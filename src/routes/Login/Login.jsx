@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
@@ -25,7 +25,14 @@ YupPassword(Yup); //Extender Yup
 
 export const Login = () => {
   //Context
-  const { iniciarSesion } = useContext(AuthContext);
+  const { iniciarSesion, errorMessage, removeError } = useContext(AuthContext);
+
+  //Escuchando el error
+  useEffect(() => {
+    if (errorMessage.length === 0) return;
+    alert(errorMessage);
+    removeError();
+  }, [errorMessage, removeError]);
 
   //Fomik
   const formik = useFormik({

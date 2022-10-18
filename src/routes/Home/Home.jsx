@@ -4,8 +4,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 export const Home = () => {
-  const { user, cerrarSesion, status } = useContext(AuthContext);
-  console.log(status);
+  const { user, cerrarSesion } = useContext(AuthContext);
   return (
     <Flex
       minH={"100vh"}

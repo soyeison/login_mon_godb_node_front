@@ -61,8 +61,10 @@ export const AuthProvider = ({ children }) => {
       });
       localStorage.setItem("token", data.token);
     } catch (error) {
-      //TODO: Organizar
-      console.log(error);
+      dispatch({
+        type: "agregarError",
+        payload: error.response.data.msg || "Información incorrecta",
+      });
     }
   };
 
@@ -71,12 +73,17 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     dispatch({ type: "cerrarSesion" });
   };
+
+  const removeError = () => {
+    dispatch({ type: "removeError" });
+  };
   return (
     <AuthContext.Provider
       value={{
         ...state,
         iniciarSesion,
         cerrarSesion,
+        removeError,
       }}
     >
       {children}

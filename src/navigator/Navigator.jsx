@@ -10,7 +10,6 @@ import { Register } from "../routes/Register/Register";
 
 export const Navigator = () => {
   const { status } = useContext(AuthContext);
-  console.log(status);
   return (
     <Routes>
       {status !== "autenticado" ? (
